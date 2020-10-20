@@ -1,0 +1,33 @@
+.main {
+  .side-bar {
+    position: relative;
+    width: 400px;
+    background: #ffffff;
+    overflow-y: scroll;
+
+    .search-container {
+      text-align: center;
+
+      #search {
+        margin: 20px auto;
+        padding: 10px;
+        border-radius: 2px;
+        border: 0.5px solid #c1c1c1;
+        font-size: 16px;
+      }
+    }
+
+    ul {
+      list-style: none;
+      font-weight: 600;
+
+      li {
+        padding: 20px 0 20px 30px;
+        cursor: pointer;
+      }
+      li:hover {
+        background: #e0e0e0;
+      }
+    }
+  }
+}
