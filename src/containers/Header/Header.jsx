@@ -4,15 +4,24 @@ import logo from '../../images/logo.png';
 
 import './Header.scss';
 
-function Header({ onAddFormChange }) {
+function Header({ showAddForm, sideBar, showSideBar }) {
+  const toggleSideBar = React.useCallback(() => {
+    showSideBar(true);
+  }, [showSideBar]);
+
   const toggleAddForm = React.useCallback(() => {
-    onAddFormChange(true);
-  }, [onAddFormChange]);
+    showAddForm(true);
+  }, [showAddForm]);
 
   return (
     <div>
       <div className='header'>
-        <img className='toggle' src={toggleImg} alt='menu' />
+        <img
+          className='toggle'
+          src={toggleImg}
+          alt='menu'
+          onClick={toggleSideBar}
+        />
         <img src={logo} alt='logo' />
         <i className='fas fa-plus' id='add-button' onClick={toggleAddForm}></i>
       </div>
