@@ -1,33 +1,47 @@
 import React from 'react';
+import AddForm from '../Form/AddForm';
+import EditForm from '../Form/EditForm';
 
 import './PlayerInfo.scss';
 
-function PlayerInfo() {
-  return (
-    <div>
-      <div class='content-heading'>
-        <h2 class='player-name'>Leo Messi</h2>
-        <div class='icons'>
-          <i class='fas fa-edit edit-button'></i>
-          <i class='fas fa-trash delete'></i>
+function PlayerInfo({ playersData, hash }) {
+  const home = playersData[0];
+
+  const renderView = () => {
+    let id = hash.slice(1);
+    const index = playersData.findIndex((player) => player.id == id);
+
+    if (hash == '' || hash == '#0') {
+      return <div dangerouslySetInnerHTML={{ __html: home.description }} />;
+    } else if (hash == '#add') {
+      return <AddForm />;
+    } else if (index && hash == '#edit') {
+      return <EditForm />;
+    } else if (index) {
+      return (
+        <div>
+          <div className='content-heading'>
+            <h2 className='player-name'>{playersData[index].name}</h2>
+            <div className='icons'>
+              <a href='#edit'>
+                <i className='fas fa-edit edit-button'></i>
+              </a>
+              <i className='fas fa-trash delete'></i>
+            </div>
+          </div>
+          <div className='player-info'>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: playersData[index].description,
+              }}
+            />
+          </div>
         </div>
-      </div>
-      <div class='player-info'>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit
-        accusantium, fugiat quae architecto pariatur minus tenetur, facilis
-        voluptate expedita aspernatur eligendi qui ab quidem praesentium itaque
-        velit placeat. Accusantium dolores dolorum sapiente perferendis nobis
-        similique debitis, architecto minus maxime dignissimos voluptates
-        expedita quam quisquam eum facere praesentium eaque odit sit veritatis
-        laboriosam magni itaque? Exercitationem molestiae pariatur totam.
-        Assumenda ducimus aliquid magnam consectetur repellendus eum explicabo
-        maiores quibusdam, reprehenderit quo ullam fugit ut a consequuntur
-        placeat delectus ab itaque aperiam laudantium nihil facere. Veritatis
-        magni cupiditate voluptatem ullam, soluta error voluptatibus, neque
-        laudantium beatae, quis molestiae culpa exercitationem at? Deserunt.
-      </div>
-    </div>
-  );
+      );
+    }
+  };
+
+  return renderView();
 }
 
 export default PlayerInfo;

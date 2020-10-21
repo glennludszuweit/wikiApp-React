@@ -4,11 +4,11 @@ import PlayersSearch from '../../components/PlayerSearch/PlayerSearch';
 
 import './Sidebar.scss';
 
-function SideBar({ sideBar }) {
+function SideBar({ playersData }) {
   return (
     <div className='side-bar'>
       <PlayersSearch />
-      <PlayersList />
+      <PlayersList playersData={playersData} />
     </div>
   );
 }

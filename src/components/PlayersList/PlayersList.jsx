@@ -2,12 +2,16 @@ import React from 'react';
 
 import './PlayersList.scss';
 
-function PlayersList() {
+function PlayersList({ playersData }) {
   return (
     <ul className='names'>
-      <li className='name'>Leo Messi</li>
-      <li className='name'>Cristiano Ronaldo</li>
-      <li className='name'>Neymar Jr.</li>
+      {playersData.map((player, index) => {
+        return (
+          <li className='name' key={index}>
+            <a href={`#${player.id}`}>{player.name}</a>
+          </li>
+        );
+      })}
     </ul>
   );
 }

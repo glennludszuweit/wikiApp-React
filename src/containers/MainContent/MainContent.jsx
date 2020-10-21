@@ -1,12 +1,13 @@
 import React from 'react';
-import AddForm from '../../components/Form/AddForm';
 import PlayerInfo from '../../components/PlayerInfo/PlayerInfo';
 
 import './MainContent.scss';
 
-function MainContent({ addForm }) {
+function MainContent({ playersData, hash }) {
   return (
-    <div className='content'>{addForm ? <AddForm /> : <PlayerInfo />}</div>
+    <div className='content'>
+      <PlayerInfo playersData={playersData} hash={hash} />
+    </div>
   );
 }
 
