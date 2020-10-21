@@ -7,9 +7,9 @@ function PlayersList({ playersData }) {
     <ul className='names'>
       {playersData.map((player, index) => {
         return (
-          <li className='name' key={index}>
-            <a href={`#${player.id}`}>{player.name}</a>
-          </li>
+          <a href={`#${player.id}`} key={index}>
+            <li className='name'>{player.name}</li>
+          </a>
         );
       })}
     </ul>

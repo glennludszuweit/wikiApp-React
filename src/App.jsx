@@ -1,23 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './containers/Header/Header';
 import SideBar from './containers/SideBar/SideBar';
 import MainContent from './containers/MainContent/MainContent';
 import './App.scss';
 
 function App() {
-  const [playersData] = useState(JSON.parse(localStorage.getItem('players')));
+  const homeData = [
+    {
+      id: 0,
+      name: 'Home',
+      description:
+        '<div style="text-align: center; margin: 50px;"><img src="./img/flyball.png" alt="wikipedia" /></dv><h1>Welcome to Football Players Wikipedia!',
+    },
+  ];
 
-  let [hash, setHash] = useState(window.location.hash);
+  const [playersData, setPlayersData] = useState(
+    JSON.parse(localStorage.getItem('players')) || homeData
+  );
+
+  const [hash, setHash] = useState(window.location.hash);
   window.onhashchange = () => {
     setHash(window.location.hash);
   };
+
+  useEffect(() => {
+    localStorage.setItem('players', JSON.stringify(playersData));
+  }, [playersData]);
 
   return (
     <div>
       <Header />
       <div className='main'>
         <SideBar playersData={playersData} />
-        <MainContent playersData={playersData} hash={hash} />
+        <MainContent
+          playersData={playersData}
+          setPlayersData={setPlayersData}
+          hash={hash}
+        />
       </div>
     </div>
   );
