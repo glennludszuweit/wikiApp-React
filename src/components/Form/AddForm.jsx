@@ -14,6 +14,9 @@ function Form({ playersData, setPlayersData }) {
     playerObj.description = descFieldRef.current.value;
 
     setPlayersData([...playersData, playerObj]);
+
+    nameFieldRef.current.value = '';
+    descFieldRef.current.value = '';
   };
 
   return (

@@ -6,7 +6,6 @@ import EditForm from '../../components/Form/EditForm';
 import './MainContent.scss';
 
 function MainContent({ playersData, setPlayersData, hash }) {
-  const home = playersData[0];
   const id = hash.slice(1);
   const index = playersData.findIndex((player) => player.id === +id);
   const player = playersData[index];
@@ -14,13 +13,19 @@ function MainContent({ playersData, setPlayersData, hash }) {
   return (
     <div className='content'>
       {hash === '' || hash === '#0' ? (
-        <div dangerouslySetInnerHTML={{ __html: home.description }} />
+        <div dangerouslySetInnerHTML={{ __html: playersData[0].description }} />
       ) : hash === '#add' ? (
         <AddForm playersData={playersData} setPlayersData={setPlayersData} />
-      ) : hash.match(`#edit`) ? (
-        <EditForm />
-      ) : index ? (
-        <PlayerInfo player={player} />
+      ) : hash.match('#edit') ? (
+        <EditForm playersData={playersData} hash={hash} />
+      ) : index && index !== -1 ? (
+        <PlayerInfo
+          hash={hash}
+          index={index}
+          player={player}
+          playersData={playersData}
+          setPlayersData={setPlayersData}
+        />
       ) : null}
     </div>
   );
