@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './PlayersSearch.scss';
-
 function PlayerSearch() {
   return (
     <div className='search-container'>

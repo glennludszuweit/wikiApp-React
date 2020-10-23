@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Header from './containers/Header/Header';
-import SideBar from './containers/SideBar/SideBar';
-import MainContent from './containers/MainContent/MainContent';
+import Header from './containers/Header';
+import SideBar from './containers/SideBar';
+import MainContent from './containers/MainContent';
 import './App.scss';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       id: 0,
       name: 'Home',
       description:
-        '<div style="text-align: center; margin: 50px;"><img src="./img/flyball.png" alt="wikipedia" /></dv><h1>Welcome to Football Players Wikipedia!',
+        '<div style="text-align: center; margin: 50px;"><img style="margin: 50px auto; max-width 1200px" src="./img/home.jpg" alt="wikipedia" /></dv><h1>Welcome to Football Players Wikipedia!',
     },
   ];
 
