@@ -20,7 +20,9 @@ function PlayerInfo({ index, player, playersData, setPlayersData }) {
           <i className='fas fa-trash delete' onClick={deletePlayer}></i>
         </div>
       </div>
-      <div className='player-info'>{player.description}</div>
+      <div className='player-info'>
+        <div dangerouslySetInnerHTML={{ __html: player.description }} />
+      </div>
     </div>
   );
 }
