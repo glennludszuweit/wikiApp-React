@@ -1,14 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactSummernote from 'react-summernote';
 import './Form.scss';
 
-function addImage([file]) {
-  const reader = new FileReader();
-  reader.onloadend = () => ReactSummernote.insertImage(reader.result);
-  reader.readAsDataURL(file);
-}
+function Form({ playersData, setPlayersData, addImage }) {
+  const [content, setContent] = useState();
 
-function Form({ content, setContent, playersData, setPlayersData }) {
   const nameFieldRef = useRef(null);
 
   const onContentChange = (data) => {

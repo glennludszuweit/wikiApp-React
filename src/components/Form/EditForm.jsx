@@ -1,31 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactSummernote from 'react-summernote';
 import './Form.scss';
 
-function addImage([file]) {
-  const reader = new FileReader();
-  reader.onloadend = () => ReactSummernote.insertImage(reader.result);
-  reader.readAsDataURL(file);
-}
-
-function EditForm({ playersData, setPlayersData, hash, content, setContent }) {
-  const nameUseRef = useRef(null);
-
+function EditForm({ playersData, setPlayersData, hash, addImage }) {
   const id = hash.split('/')[1];
   const index = playersData.findIndex((player) => player.id === +id);
   const player = playersData[index];
 
+  const [newContent, setNewContent] = useState(player.description);
+  const nameUseRef = useRef(null);
+
   const onContentChange = (data) => {
-    setContent(data);
+    setNewContent(data);
   };
 
   const onSubmitEdit = (e) => {
     e.preventDefault();
-    let newPlayerObj = {};
-    newPlayerObj.name = nameUseRef.current.value;
-    newPlayerObj.description = content;
 
-    setPlayersData([...playersData, newPlayerObj]);
+    player.id = player.id;
+    player.name = nameUseRef.current.value;
+    player.description = newContent;
+
+    setPlayersData([...playersData]);
   };
 
   return (
@@ -41,7 +37,10 @@ function EditForm({ playersData, setPlayersData, hash, content, setContent }) {
           required
         />
         <ReactSummernote
-          value={player.description}
+          onInit={() => {
+            const editArea = document.querySelector('.note-editable');
+            editArea.innerHTML = Object.values({ newContent });
+          }}
           options={{
             height: 350,
             dialogsInBody: true,
