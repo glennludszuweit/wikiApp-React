@@ -1,7 +1,7 @@
 import React from 'react';
-import PlayerInfo from '../components/PlayerInfo';
-import AddForm from '../components/AddForm';
-import EditForm from '../components/EditForm';
+import PlayerInfo from '../Components/PlayerInfo';
+import AddForm from '../Components/AddForm';
+import EditForm from '../Components/EditForm';
 import ReactSummernote from 'react-summernote';
 
 function MainContent({ playersData, setPlayersData, hash }) {

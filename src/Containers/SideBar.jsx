@@ -1,6 +1,6 @@
 import React from 'react';
-import PlayersList from '../components/PlayersList';
-import PlayersSearch from '../components/PlayerSearch';
+import PlayersList from '../Components/PlayersList';
+import PlayersSearch from '../Components/PlayerSearch';
 
 function SideBar({ playersData }) {
   return (

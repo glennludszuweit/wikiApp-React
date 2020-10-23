@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Header from './containers/Header';
-import SideBar from './containers/SideBar';
-import MainContent from './containers/MainContent';
+import Header from './Containers/Header';
+import SideBar from './Containers/SideBar';
+import MainContent from './Containers/MainContent';
 import './App.scss';
 
 function App() {
