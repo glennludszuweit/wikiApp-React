@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import ReactSummernote from 'react-summernote';
-import './Form.scss';
 
 function EditForm({ playersData, setPlayersData, hash, addImage }) {
   const id = hash.split('/')[1];
@@ -46,7 +45,7 @@ function EditForm({ playersData, setPlayersData, hash, addImage }) {
             dialogsInBody: true,
             toolbar: [
               ['style', ['style']],
-              ['font', ['bold', 'underline', 'clear']],
+              ['font', ['bold', 'underline', 'clear', 'color']],
               ['fontname', ['fontname']],
               ['para', ['ul', 'ol', 'paragraph']],
               ['table', ['table']],

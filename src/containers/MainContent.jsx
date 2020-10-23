@@ -1,9 +1,8 @@
 import React from 'react';
-import PlayerInfo from '../../components/PlayerInfo/PlayerInfo';
-import AddForm from '../../components/Form/AddForm';
-import EditForm from '../../components/Form/EditForm';
+import PlayerInfo from '../components/PlayerInfo';
+import AddForm from '../components/AddForm';
+import EditForm from '../components/EditForm';
 import ReactSummernote from 'react-summernote';
-import './MainContent.scss';
 
 function MainContent({ playersData, setPlayersData, hash }) {
   const id = hash.slice(1);

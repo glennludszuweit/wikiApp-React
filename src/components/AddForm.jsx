@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import ReactSummernote from 'react-summernote';
-import './Form.scss';
 
 function Form({ playersData, setPlayersData, addImage }) {
   const [content, setContent] = useState();
@@ -39,7 +38,7 @@ function Form({ playersData, setPlayersData, addImage }) {
             dialogsInBody: true,
             toolbar: [
               ['style', ['style']],
-              ['font', ['bold', 'underline', 'clear']],
+              ['font', ['bold', 'underline', 'clear', 'color']],
               ['fontname', ['fontname']],
               ['para', ['ul', 'ol', 'paragraph']],
               ['table', ['table']],

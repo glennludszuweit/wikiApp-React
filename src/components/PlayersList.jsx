@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './PlayersList.scss';
-
 function PlayersList({ playersData }) {
   return (
     <ul className='names'>
