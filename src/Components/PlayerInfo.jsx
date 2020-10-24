@@ -1,27 +1,17 @@
 import React from 'react';
 
-function PlayerInfo({ index, player, playersData, setPlayersData }) {
-  const deletePlayer = () => {
-    console.log(index);
-    playersData.splice(index, 1);
-    setPlayersData([...playersData]);
-  };
-
+function PlayerInfo() {
   return (
     <div>
       <div className='content-heading'>
-        <h2 className='player-name'>{player.name}</h2>
+        <h2 className='player-name'>Player name</h2>
         <div className='icons'>
-          <a href={`#edit/${player.id}`}>
-            <i className='fas fa-edit edit-button'></i>
-          </a>
-          <i className='fas fa-trash delete' onClick={deletePlayer}></i>
+          <i className='fas fa-edit edit-button'></i>
+          <i className='fas fa-trash delete'></i>
         </div>
       </div>
 
-      <div className='player-info'>
-        <div dangerouslySetInnerHTML={{ __html: player.description }} />
-      </div>
+      <div className='player-info'>Player description</div>
     </div>
   );
 }

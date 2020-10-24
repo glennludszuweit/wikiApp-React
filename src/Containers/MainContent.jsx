@@ -2,45 +2,18 @@ import React from 'react';
 import PlayerInfo from '../Components/PlayerInfo';
 import AddForm from '../Components/AddForm';
 import EditForm from '../Components/EditForm';
-import ReactSummernote from 'react-summernote';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-function MainContent({ playersData, setPlayersData, hash }) {
-  const id = hash.slice(1);
-  const index = playersData.findIndex((player) => player.id === +id);
-  const player = playersData[index];
-
-  function addImage([file]) {
-    const reader = new FileReader();
-    reader.onloadend = () => ReactSummernote.insertImage(reader.result);
-    reader.readAsDataURL(file);
-  }
-
+function MainContent() {
   return (
     <div className='content'>
-      {hash === '' || hash === '#0' ? (
-        <div dangerouslySetInnerHTML={{ __html: playersData[0].description }} />
-      ) : hash === '#add' ? (
-        <AddForm
-          playersData={playersData}
-          setPlayersData={setPlayersData}
-          addImage={addImage}
-        />
-      ) : hash.match('#edit') ? (
-        <EditForm
-          playersData={playersData}
-          setPlayersData={setPlayersData}
-          hash={hash}
-          addImage={addImage}
-        />
-      ) : index && index !== -1 ? (
-        <PlayerInfo
-          hash={hash}
-          index={index}
-          player={player}
-          playersData={playersData}
-          setPlayersData={setPlayersData}
-        />
-      ) : null}
+      <Router>
+        <Switch>
+          <Route path='/add' component={AddForm} />
+          <Route path={`/edit/:id`} component={EditForm} />
+          <Route path={`/:id`} component={PlayerInfo} />
+        </Switch>
+      </Router>
     </div>
   );
 }
