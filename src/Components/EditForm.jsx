@@ -1,9 +1,5 @@
 import React from 'react';
-
-// onInit={() => {
-//   const editArea = document.querySelector('.note-editable');
-//   editArea.innerHTML = Object.values({ newContent });
-// }}
+import { Link } from 'react-router-dom';
 
 function EditForm() {
   return (
@@ -18,7 +14,9 @@ function EditForm() {
           required
         />
         <div className='buttons'>
-          <button>Cancel</button>
+          <Link to='/:id'>
+            <button>Cancel</button>
+          </Link>
           <button>Submit</button>
         </div>
       </form>

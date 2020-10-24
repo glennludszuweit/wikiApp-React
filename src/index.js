@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import $ from 'jquery';
+import { BrowserRouter } from 'react-router-dom';
 
 // import summernote css
 import 'react-summernote/dist/react-summernote.css';
@@ -15,8 +16,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 window.$ = window.jQuery = $;
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root')
 );

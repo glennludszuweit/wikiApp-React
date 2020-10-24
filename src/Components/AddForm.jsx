@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Form() {
   return (
@@ -9,7 +10,9 @@ function Form() {
 
         <div className='buttons'>
           <button>Cancel</button>
-          <button>Submit</button>
+          <Link>
+            <button>Submit</button>
+          </Link>
         </div>
       </form>
     </div>
