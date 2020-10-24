@@ -16,7 +16,6 @@ function EditForm({ playersData, setPlayersData, hash, addImage }) {
   const onSubmitEdit = (e) => {
     e.preventDefault();
 
-    player.id = player.id;
     player.name = nameUseRef.current.value;
     player.description = newContent;
 
