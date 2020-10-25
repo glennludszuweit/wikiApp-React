@@ -11,7 +11,6 @@ function EditForm() {
           type='text'
           placeholder='players name'
           defaultValue='player name'
-          required
         />
         <div className='buttons'>
           <Link to='/:id'>

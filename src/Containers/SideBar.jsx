@@ -9,7 +9,7 @@ function SideBar() {
       </div>
 
       <ul className='names'>
-        <Link to='/1'>
+        <Link to='/:id'>
           <li className='name'>player name</li>
         </Link>
       </ul>

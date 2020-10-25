@@ -9,8 +9,10 @@ function Form() {
         <input id='name' type='text' placeholder='players name' required />
 
         <div className='buttons'>
-          <button>Cancel</button>
-          <Link>
+          <Link to='/'>
+            <button>Cancel</button>
+          </Link>
+          <Link to='/:id'>
             <button>Submit</button>
           </Link>
         </div>
