@@ -1,18 +1,20 @@
 import React from 'react';
 import Header from './Containers/Header';
 import SideBar from './Containers/SideBar';
-import MainContent from './Containers/MainContent';
+import Content from './Containers/Content';
+import { PlayerProvider } from './Context/PlayerState';
+
 import './App.scss';
 
 function App() {
   return (
-    <div>
+    <PlayerProvider>
       <Header />
       <div className='main'>
         <SideBar />
-        <MainContent />
+        <Content />
       </div>
-    </div>
+    </PlayerProvider>
   );
 }
 

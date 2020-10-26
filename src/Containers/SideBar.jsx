@@ -1,18 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Players from '../Components/Players';
+import Search from '../Components/Search';
 
 function SideBar() {
   return (
     <div className='side-bar'>
-      <div className='search-container'>
-        <input type='search' id='search' placeholder='search player' />
-      </div>
-
-      <ul className='names'>
-        <Link to='/:id'>
-          <li className='name'>player name</li>
-        </Link>
-      </ul>
+      <Search />
+      <Players />
     </div>
   );
 }
