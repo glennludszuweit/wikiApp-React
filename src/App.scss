@@ -105,10 +105,7 @@ body {
     background: #f2f2f2;
     padding: 50px;
     overflow-y: scroll;
-    img {
-      max-width: 1000px;
-      margin: 40px 0;
-    }
+
     .content-heading {
       display: flex;
       justify-content: space-between;
@@ -131,6 +128,11 @@ body {
     }
     .player-info {
       margin: 40px 0 15px;
+      img {
+        max-width: 1000px;
+        margin: 40px 0;
+        border-radius: 5px;
+      }
     }
     .home {
       text-align: center;

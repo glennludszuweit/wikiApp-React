@@ -9,6 +9,7 @@ function Add() {
   const { addPlayer } = useContext(PlayerContext);
   const [description, setDescription] = useState();
   const nameUseRef = useRef(null);
+  const newPlayer = {};
 
   const addImage = ([file]) => {
     const reader = new FileReader();
@@ -21,7 +22,6 @@ function Add() {
   };
 
   const onAddPlayerHandler = () => {
-    const newPlayer = {};
     newPlayer.id = uid();
     newPlayer.name = nameUseRef.current.value;
     newPlayer.slug = slugify(newPlayer.name);

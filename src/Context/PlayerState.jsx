@@ -11,11 +11,11 @@ export const PlayerContext = createContext(initialState);
 
 //provider
 export const PlayerProvider = ({ children }) => {
-  const [playersState, dispatch] = useReducer(PlayerReducer, initialState);
+  const [state, dispatch] = useReducer(PlayerReducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem('players', JSON.stringify(playersState));
-  }, [playersState]);
+    return localStorage.setItem('players', JSON.stringify(state));
+  }, [state]);
 
   //add player
   const addPlayer = (player) => {
@@ -43,7 +43,12 @@ export const PlayerProvider = ({ children }) => {
 
   return (
     <PlayerContext.Provider
-      value={{ playersState, addPlayer, editPlayer, removePlayer }}
+      value={{
+        state,
+        addPlayer,
+        editPlayer,
+        removePlayer,
+      }}
     >
       {children}
     </PlayerContext.Provider>

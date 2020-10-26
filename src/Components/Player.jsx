@@ -3,10 +3,10 @@ import { Link, useParams } from 'react-router-dom';
 import { PlayerContext } from '../Context/PlayerState';
 
 function Player() {
-  const { playersState, removePlayer } = useContext(PlayerContext);
+  const { state, removePlayer } = useContext(PlayerContext);
   const { slug } = useParams();
-  const index = playersState.findIndex((player) => player.slug === slug);
-  const player = playersState[index];
+  const index = state.findIndex((player) => player.slug === slug);
+  const player = state[index];
 
   return (
     <div>

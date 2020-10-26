@@ -1,17 +1,17 @@
-export default (playersState, action) => {
+export default (state, action) => {
   switch (action.type) {
     case 'ADD_PLAYER':
-      return [action.payload, ...playersState];
+      return [action.payload, ...state];
 
     case 'EDIT_PLAYER':
-      return playersState.map((player) =>
+      return state.map((player) =>
         player.id === action.payload.id ? action.payload : player
       );
 
     case 'REMOVE_PLAYER':
-      return playersState.filter((player) => player.id !== action.payload);
+      return state.filter((player) => player.id !== action.payload);
 
     default:
-      return playersState;
+      return state;
   }
 };

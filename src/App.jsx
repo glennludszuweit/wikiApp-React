@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Containers/Header';
-import SideBar from './Containers/SideBar';
+import Aside from './Containers/Aside';
 import Content from './Containers/Content';
 import { PlayerProvider } from './Context/PlayerState';
 
@@ -11,7 +11,7 @@ function App() {
     <PlayerProvider>
       <Header />
       <div className='main'>
-        <SideBar />
+        <Aside />
         <Content />
       </div>
     </PlayerProvider>

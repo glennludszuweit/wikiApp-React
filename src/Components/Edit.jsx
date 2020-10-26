@@ -5,10 +5,10 @@ import slugify from 'react-slugify';
 import { PlayerContext } from '../Context/PlayerState';
 
 function Edit() {
-  const { playersState, editPlayer } = useContext(PlayerContext);
+  const { state, editPlayer } = useContext(PlayerContext);
   const { slug } = useParams();
-  const index = playersState.findIndex((player) => player.slug === slug);
-  const player = playersState[index];
+  const index = state.findIndex((player) => player.slug === slug);
+  const player = state[index];
   const [description, setDescription] = useState(player.description);
   const nameUseRef = useRef(null);
 
