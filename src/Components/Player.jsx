@@ -1,13 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { PlayerContext } from '../Context/PlayerState';
 
-function Player({ player, removePlayer }) {
+function Player() {
+  const { playersState, removePlayer } = useContext(PlayerContext);
+  const { slug } = useParams();
+  const index = playersState.findIndex((player) => player.slug === slug);
+  const player = playersState[index];
+
   return (
     <div>
       <div className='content-heading'>
         <h2 className='player-name'>{player.name}</h2>
         <div className='icons'>
-          <Link to={`/edit/${player.id}`}>
+          <Link to={`/edit/${player.slug}`}>
             <i className='fas fa-edit edit-button'></i>
           </Link>
           <Link to='/' onClick={() => removePlayer(player.id)}>

@@ -9073,6 +9073,11 @@ react-scripts@3.4.3:
   optionalDependencies:
     fsevents "2.1.2"
 
+react-slugify@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-slugify/-/react-slugify-2.0.2.tgz#af59ebcb2989b8e80d1863bab598cfad87a43353"
+  integrity sha512-Q9k8rYh2FeSvXD9/p9g+Kk8zXjUpbmgpkZs/EdoVmV2crRMlcSYm7S31bXdnnCdbVGH9z73A0oD/vws1+AZHJQ==
+
 react-summernote@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-summernote/-/react-summernote-2.0.2.tgz#7be8ff8f38c286ffb0d6d99a1ef5360b027d30a8"

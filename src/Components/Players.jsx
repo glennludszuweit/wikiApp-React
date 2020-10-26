@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { PlayerContext } from '../Context/PlayerState';
 import { Link } from 'react-router-dom';
+import { PlayerContext } from '../Context/PlayerState';
 
 function Players() {
   const { playersState } = useContext(PlayerContext);
@@ -9,7 +9,7 @@ function Players() {
     <ul className='names'>
       {playersState.map((player, index) => {
         return (
-          <Link key={index} to={`/${player.id}`}>
+          <Link to={`/${player.slug}`} key={index}>
             <li className='name'>{player.name}</li>
           </Link>
         );

@@ -2,15 +2,9 @@ import React, { createContext, useReducer, useEffect } from 'react';
 import PlayerReducer from './PlayerReducer';
 
 //initial state
-const start = [
-  {
-    id: 0,
-    name: 'Start here',
-    description:
-      '<h1>Welcome to Football Players Wikipedia!</h1><p style="color: red">Start by adding new players using the PLUS button in the top right corner of your screen</p>',
-  },
-];
-const initialState = JSON.parse(localStorage.getItem('players')) || start;
+const initialState = JSON.parse(localStorage.getItem('players'))
+  ? JSON.parse(localStorage.getItem('players'))
+  : [];
 
 //context
 export const PlayerContext = createContext(initialState);

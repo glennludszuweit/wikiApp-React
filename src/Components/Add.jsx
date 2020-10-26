@@ -1,8 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import ReactSummernote from 'react-summernote';
 import { Link } from 'react-router-dom';
+import slugify from 'react-slugify';
+import { v4 as uid } from 'uuid';
+import { PlayerContext } from '../Context/PlayerState';
 
-function Add({ addPlayer }) {
+function Add() {
+  const { addPlayer } = useContext(PlayerContext);
   const [description, setDescription] = useState();
   const nameUseRef = useRef(null);
 
@@ -18,8 +22,9 @@ function Add({ addPlayer }) {
 
   const onAddPlayerHandler = () => {
     const newPlayer = {};
-    newPlayer.id = Math.floor(Date.now() / 1000);
+    newPlayer.id = uid();
     newPlayer.name = nameUseRef.current.value;
+    newPlayer.slug = slugify(newPlayer.name);
     newPlayer.description = description;
     addPlayer(newPlayer);
   };

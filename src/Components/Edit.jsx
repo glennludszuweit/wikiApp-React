@@ -1,8 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import ReactSummernote from 'react-summernote';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import slugify from 'react-slugify';
+import { PlayerContext } from '../Context/PlayerState';
 
-function Edit({ player, editPlayer }) {
+function Edit() {
+  const { playersState, editPlayer } = useContext(PlayerContext);
+  const { slug } = useParams();
+  const index = playersState.findIndex((player) => player.slug === slug);
+  const player = playersState[index];
   const [description, setDescription] = useState(player.description);
   const nameUseRef = useRef(null);
 
@@ -18,8 +24,8 @@ function Edit({ player, editPlayer }) {
 
   const onEditPlayerHandler = () => {
     player.name = nameUseRef.current.value;
+    player.slug = slugify(player.name);
     player.description = description;
-
     editPlayer(player);
   };
 
@@ -56,10 +62,10 @@ function Edit({ player, editPlayer }) {
           onImageUpload={addImage}
         />
         <div className='buttons'>
-          <Link to={`/${player.id}`}>
+          <Link to={`/${player.slug}`}>
             <button>Cancel</button>
           </Link>
-          <Link to={`/${player.id}`} onClick={onEditPlayerHandler}>
+          <Link to={`/${player.slug}`} onClick={onEditPlayerHandler}>
             <button>Update</button>
           </Link>
         </div>
