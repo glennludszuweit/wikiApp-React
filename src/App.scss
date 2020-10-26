@@ -129,13 +129,18 @@ body {
     .player-info {
       margin: 40px 0 15px;
       img {
-        max-width: 1000px;
+        width: 100%;
         margin: 40px 0;
         border-radius: 5px;
       }
     }
     .home {
-      text-align: center;
+      margin: 0 auto;
+      img {
+        width: 100%;
+        margin: 40px 0;
+        border-radius: 5px;
+      }
     }
 
     /* Form */

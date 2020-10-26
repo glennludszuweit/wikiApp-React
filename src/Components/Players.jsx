@@ -8,8 +8,8 @@ function Players() {
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState(state);
 
-  const onSearch = (event) => {
-    setSearchValue(event.target.value);
+  const onSearch = (e) => {
+    setSearchValue(e.target.value);
   };
 
   useEffect(() => {
