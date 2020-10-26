@@ -1,44 +1,43 @@
 import React, { useRef, useState } from 'react';
 import ReactSummernote from 'react-summernote';
+import { Link } from 'react-router-dom';
 
-function EditForm({ playersData, setPlayersData, hash, addImage }) {
-  const id = hash.split('/')[1];
-  const index = playersData.findIndex((player) => player.id === +id);
-  const player = playersData[index];
-
-  const [newContent, setNewContent] = useState(player.description);
+function Add({ addPlayer }) {
+  const [description, setDescription] = useState();
   const nameUseRef = useRef(null);
 
-  const onContentChange = (data) => {
-    setNewContent(data);
+  const addImage = ([file]) => {
+    const reader = new FileReader();
+    reader.onloadend = () => ReactSummernote.insertImage(reader.result);
+    reader.readAsDataURL(file);
   };
 
-  const onSubmitEdit = (e) => {
-    e.preventDefault();
+  const onDescriptionChange = (data) => {
+    setDescription(data);
+  };
 
-    player.name = nameUseRef.current.value;
-    player.description = newContent;
-
-    setPlayersData([...playersData]);
+  const onAddPlayerHandler = () => {
+    const newPlayer = {};
+    newPlayer.id = Math.floor(Date.now() / 1000);
+    newPlayer.name = nameUseRef.current.value;
+    newPlayer.description = description;
+    addPlayer(newPlayer);
   };
 
   return (
     <div>
-      <h1>Edit Player</h1>
+      <h1>Add Player</h1>
       <form>
         <input
           id='name'
           type='text'
           placeholder='players name'
-          defaultValue={player.name}
           ref={nameUseRef}
           required
         />
+
         <ReactSummernote
-          onInit={() => {
-            const editArea = document.querySelector('.note-editable');
-            editArea.innerHTML = Object.values({ newContent });
-          }}
+          value={description}
           options={{
             height: 350,
             dialogsInBody: true,
@@ -52,18 +51,21 @@ function EditForm({ playersData, setPlayersData, hash, addImage }) {
               ['view', ['fullscreen', 'codeview']],
             ],
           }}
-          onChange={onContentChange}
+          onChange={onDescriptionChange}
           onImageUpload={addImage}
         />
+
         <div className='buttons'>
-          <button>Cancel</button>
-          <button id='submit' onClick={onSubmitEdit}>
-            Submit
-          </button>
+          <Link to='/'>
+            <button>Cancel</button>
+          </Link>
+          <Link to='/' onClick={onAddPlayerHandler}>
+            <button>Submit</button>
+          </Link>
         </div>
       </form>
     </div>
   );
 }
 
-export default EditForm;
+export default Add;

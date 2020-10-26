@@ -1,21 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function PlayerInfo({ index, player, playersData, setPlayersData }) {
-  const deletePlayer = () => {
-    console.log(index);
-    playersData.splice(index, 1);
-    setPlayersData([...playersData]);
-  };
-
+function Player({ player, removePlayer }) {
   return (
     <div>
       <div className='content-heading'>
         <h2 className='player-name'>{player.name}</h2>
         <div className='icons'>
-          <a href={`#edit/${player.id}`}>
+          <Link to={`/edit/${player.id}`}>
             <i className='fas fa-edit edit-button'></i>
-          </a>
-          <i className='fas fa-trash delete' onClick={deletePlayer}></i>
+          </Link>
+          <Link to='/' onClick={() => removePlayer(player.id)}>
+            <i className='fas fa-trash delete'></i>
+          </Link>
         </div>
       </div>
 
@@ -26,4 +23,4 @@ function PlayerInfo({ index, player, playersData, setPlayersData }) {
   );
 }
 
-export default PlayerInfo;
+export default Player;

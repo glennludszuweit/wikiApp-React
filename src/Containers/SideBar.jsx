@@ -1,12 +1,12 @@
 import React from 'react';
-import PlayersList from '../Components/PlayersList';
-import PlayersSearch from '../Components/PlayerSearch';
+import Players from '../Components/Players';
+import Search from '../Components/Search';
 
-function SideBar({ playersData }) {
+function SideBar() {
   return (
     <div className='side-bar'>
-      <PlayersSearch />
-      <PlayersList playersData={playersData} />
+      <Search />
+      <Players />
     </div>
   );
 }

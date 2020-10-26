@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PlayerSearch() {
+function Search() {
   return (
     <div className='search-container'>
       <input type='search' id='search' placeholder='search player' />
@@ -8,4 +8,4 @@ function PlayerSearch() {
   );
 }
 
-export default PlayerSearch;
+export default Search;
