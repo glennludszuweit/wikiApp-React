@@ -2,11 +2,21 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PlayerContext } from '../Context/PlayerState';
 
-function Players() {
+function List() {
   const { state } = useContext(PlayerContext);
-
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState(state);
+  let selected;
+
+  const onListHighLight = (e) => {
+    if (e.target.className === 'name' || e.target !== 0) {
+      if (selected) {
+        selected.classList.remove('list-highlight');
+      }
+      selected = e.target;
+      selected.classList.add('list-highlight');
+    }
+  };
 
   const onSearch = (e) => {
     setSearchValue(e.target.value);
@@ -26,6 +36,7 @@ function Players() {
           type='search'
           id='search'
           placeholder='search player'
+          autoComplete='off'
           value={searchValue}
           onChange={onSearch}
         />
@@ -34,7 +45,9 @@ function Players() {
         {searchResults.map((player, index) => {
           return (
             <Link to={`/${player.slug}`} key={index}>
-              <li className='name'>{player.name}</li>
+              <li className='name' onClick={onListHighLight}>
+                {player.name}
+              </li>
             </Link>
           );
         })}
@@ -43,4 +56,4 @@ function Players() {
   );
 }
 
-export default Players;
+export default List;

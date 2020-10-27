@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import { Link, useParams } from 'react-router-dom';
 import { PlayerContext } from '../Context/PlayerState';
 
-function Player() {
+function View() {
   const { state, removePlayer } = useContext(PlayerContext);
   const { slug } = useParams();
   const index = state.findIndex((player) => player.slug === slug);
@@ -22,11 +23,9 @@ function Player() {
         </div>
       </div>
 
-      <div className='player-info'>
-        <div dangerouslySetInnerHTML={{ __html: player.description }} />
-      </div>
+      <div className='player-info'>{ReactHtmlParser(player.description)}</div>
     </div>
   );
 }
 
-export default Player;
+export default View;

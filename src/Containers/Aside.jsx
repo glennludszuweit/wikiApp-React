@@ -1,10 +1,10 @@
 import React from 'react';
-import Players from '../Components/Players';
+import List from '../Components/List';
 
 function Aside() {
   return (
     <div className='side-bar'>
-      <Players />
+      <List />
     </div>
   );
 }

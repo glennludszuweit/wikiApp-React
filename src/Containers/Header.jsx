@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import toggle from '../Images/ball.png';
 import logo from '../Images/logo.png';
-import Aside from './Aside';
 
 function Header({ toggleAside, setToggleAside }) {
   const onToggle = () => {
