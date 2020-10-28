@@ -13,6 +13,8 @@ import 'bootstrap/js/dist/dropdown';
 import 'bootstrap/js/dist/tooltip';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 window.$ = window.jQuery = $;
 
 ReactDOM.render(
@@ -21,3 +23,5 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root')
 );
+
+serviceWorkerRegistration.register();
