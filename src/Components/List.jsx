@@ -6,17 +6,9 @@ function List() {
   const { state } = useContext(PlayerContext);
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState(state);
-  let selected;
+  const [selected, setSelected] = useState(-1);
 
-  const onListHighLight = (e) => {
-    if (e.target.className === 'name' || e.target !== 0) {
-      if (selected) {
-        selected.classList.remove('list-highlight');
-      }
-      selected = e.target;
-      selected.classList.add('list-highlight');
-    }
-  };
+  const onListHighLight = (index) => () => setSelected(index);
 
   const onSearch = (e) => {
     setSearchValue(e.target.value);
@@ -45,7 +37,10 @@ function List() {
         {searchResults.map((player, index) => {
           return (
             <Link to={`/${player.slug}`} key={index}>
-              <li className='name' onClick={onListHighLight}>
+              <li
+                className={selected === index ? 'name list-highlight' : 'name'}
+                onClick={onListHighLight(index)}
+              >
                 {player.name}
               </li>
             </Link>

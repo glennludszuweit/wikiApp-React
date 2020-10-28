@@ -72,8 +72,10 @@ body {
     overflow-y: scroll;
     .search-container {
       text-align: center;
+      margin: 10px;
       #search {
-        margin: 20px auto;
+        width: 100%;
+        margin: 10px auto;
         padding: 10px;
         border-radius: 2px;
         border: 0.5px solid #c1c1c1;
@@ -175,6 +177,130 @@ body {
           background: #333333;
           transform: scale(1.03);
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  /* Main container */
+  .main {
+    display: flex;
+    letter-spacing: 0.3px;
+    /* side-bar */
+    .side-bar {
+      .search-container {
+        text-align: center;
+        margin: 5px 10px;
+
+        #search {
+          width: 100%;
+          margin: 5px auto;
+          padding: 10px;
+          font-size: 15px;
+        }
+      }
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 25px;
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .content-heading {
+        i {
+          margin: 10px 5px;
+        }
+        h2 {
+          margin: 10px 0;
+          font-size: 25px;
+        }
+      }
+      .player-info {
+        margin: 20px 0 5px;
+        font-size: 15px;
+        img {
+          margin: 5px 0;
+        }
+      }
+      .home {
+        img {
+          margin: 20px 0;
+          border-radius: 5px;
+        }
+      }
+
+      /* Form */
+      form {
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  /* Main container */
+  .main {
+    display: block;
+    line-height: 10px;
+    letter-spacing: 0.3px;
+    /* side-bar */
+    .side-bar {
+      width: 100%;
+      height: 300px;
+      background: rgb(200, 200, 200);
+      .search-container {
+        text-align: center;
+        margin: 5px;
+
+        #search {
+          width: 100%;
+          margin: 5px auto;
+          padding: 20px;
+          font-size: 15px;
+        }
+      }
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 15px;
+      background: #fff;
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .content-heading {
+        i {
+          margin: 10px 5px;
+          cursor: pointer;
+        }
+        h2 {
+          margin: 10px 0;
+          font-size: 25px;
+        }
+      }
+      .player-info {
+        margin: 20px 0 5px;
+        font-size: 15px;
+        img {
+          margin: 5px 0;
+          border-radius: 2px;
+        }
+      }
+      .home {
+        img {
+          margin: 20px 0;
+        }
+      }
+
+      /* Form */
+      form {
+        margin: 10px 0;
       }
     }
   }
