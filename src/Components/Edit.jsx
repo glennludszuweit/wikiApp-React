@@ -2,9 +2,9 @@ import React, { useRef, useState, useContext } from 'react';
 import ReactSummernote from 'react-summernote';
 import { Link, useParams } from 'react-router-dom';
 import slugify from 'react-slugify';
-import { PlayerContext } from '../Context/PlayerState';
+import { PlayerContext } from '../Context/PlayerContext';
 
-function Edit() {
+const Edit = () => {
   const { state, editPlayer } = useContext(PlayerContext);
   const { slug } = useParams();
   const index = state.findIndex((player) => player.slug === slug);
@@ -72,6 +72,6 @@ function Edit() {
       </form>
     </div>
   );
-}
+};
 
 export default Edit;

@@ -1,15 +1,17 @@
 import React, { useRef, useState, useContext } from 'react';
+import { PlayerContext } from '../Context/PlayerContext';
 import ReactSummernote from 'react-summernote';
 import { Link } from 'react-router-dom';
 import slugify from 'react-slugify';
 import { v4 as uid } from 'uuid';
-import { PlayerContext } from '../Context/PlayerState';
+import { UIContext } from '../Context/UIContext';
 
-function Add() {
-  const { addPlayer } = useContext(PlayerContext);
+const Add = () => {
+  const { state, addPlayer } = useContext(PlayerContext);
+  const { onAlert, setAlertLink } = useContext(UIContext);
+
   const [description, setDescription] = useState();
   const nameUseRef = useRef(null);
-  const newPlayer = {};
 
   const addImage = ([file]) => {
     const reader = new FileReader();
@@ -22,11 +24,22 @@ function Add() {
   };
 
   const onAddPlayerHandler = () => {
+    const newPlayer = {};
     newPlayer.id = uid();
     newPlayer.name = nameUseRef.current.value;
     newPlayer.slug = slugify(newPlayer.name);
     newPlayer.description = description;
-    addPlayer(newPlayer);
+
+    if (
+      state.every(
+        (player) => player.name.toLowerCase() !== newPlayer.name.toLowerCase()
+      )
+    ) {
+      addPlayer(newPlayer);
+    } else {
+      setAlertLink(slugify(nameUseRef.current.value));
+      onAlert();
+    }
   };
 
   return (
@@ -71,6 +84,6 @@ function Add() {
       </form>
     </div>
   );
-}
+};
 
 export default Add;

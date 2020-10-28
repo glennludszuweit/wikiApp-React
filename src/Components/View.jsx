@@ -1,13 +1,17 @@
 import React, { useContext } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { Link, useParams } from 'react-router-dom';
-import { PlayerContext } from '../Context/PlayerState';
+import { PlayerContext } from '../Context/PlayerContext';
 
-function View() {
+const View = () => {
   const { state, removePlayer } = useContext(PlayerContext);
   const { slug } = useParams();
   const index = state.findIndex((player) => player.slug === slug);
   const player = state[index];
+
+  const onRemove = () => {
+    removePlayer(player.id);
+  };
 
   return (
     <div>
@@ -17,7 +21,7 @@ function View() {
           <Link to={`/edit/${player.slug}`}>
             <i className='fas fa-edit edit-button'></i>
           </Link>
-          <Link to='/' onClick={() => removePlayer(player.id)}>
+          <Link to='/' onClick={onRemove}>
             <i className='fas fa-trash delete'></i>
           </Link>
         </div>
@@ -26,6 +30,6 @@ function View() {
       <div className='player-info'>{ReactHtmlParser(player.description)}</div>
     </div>
   );
-}
+};
 
 export default View;

@@ -5,7 +5,7 @@ import Add from '../Components/Add';
 import Edit from '../Components/Edit';
 import { Switch, Route } from 'react-router-dom';
 
-function Content() {
+const Content = () => {
   return (
     <div className='content'>
       <Switch>
@@ -16,6 +16,6 @@ function Content() {
       </Switch>
     </div>
   );
-}
+};
 
 export default Content;

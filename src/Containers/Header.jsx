@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UIContext } from '../Context/UIContext';
 import toggle from '../Images/ball.png';
 import logo from '../Images/logo.png';
 
-function Header({ toggleAside, setToggleAside }) {
-  const onToggle = () => {
-    setToggleAside(!toggleAside);
-  };
+const Header = () => {
+  const { onToggleAside } = useContext(UIContext);
 
   return (
     <div>
       <div className='header'>
-        <img className='toggle' src={toggle} alt='menu' onClick={onToggle} />
+        <img
+          className='toggle'
+          src={toggle}
+          alt='menu'
+          onClick={onToggleAside}
+        />
         <Link to='/'>
           <img src={logo} alt='logo' />
         </Link>
@@ -21,6 +25,6 @@ function Header({ toggleAside, setToggleAside }) {
       </div>
     </div>
   );
-}
+};
 
 export default Header;
