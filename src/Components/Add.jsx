@@ -10,7 +10,7 @@ import { MessageContext } from '../Context/MessageContext';
 const Add = () => {
   const { state, addPlayer } = useContext(PlayerContext);
   const { onAddAlert, setAlertLink } = useContext(AlertContext);
-  const { displayAddMessage } = useContext(MessageContext);
+  const { onDisplayMessage } = useContext(MessageContext);
 
   const [description, setDescription] = useState();
   const nameUseRef = useRef(null);
@@ -38,7 +38,7 @@ const Add = () => {
       )
     ) {
       addPlayer(newPlayer);
-      displayAddMessage();
+      onDisplayMessage('Player added!');
     } else {
       setAlertLink(slugify(nameUseRef.current.value));
       onAddAlert();

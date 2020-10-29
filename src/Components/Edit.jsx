@@ -6,7 +6,7 @@ import { PlayerContext } from '../Context/PlayerContext';
 import { MessageContext } from '../Context/MessageContext';
 
 const Edit = () => {
-  const { displayUpdatedMessage } = useContext(MessageContext);
+  const { onDisplayMessage } = useContext(MessageContext);
   const { state, editPlayer } = useContext(PlayerContext);
   const { slug } = useParams();
   const index = state.findIndex((player) => player.slug === slug);
@@ -29,7 +29,7 @@ const Edit = () => {
     player.slug = slugify(player.name);
     player.description = description;
     editPlayer(player);
-    displayUpdatedMessage();
+    onDisplayMessage('Player updated!');
   };
 
   return (

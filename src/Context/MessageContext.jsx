@@ -3,23 +3,19 @@ import React, { useState, createContext } from 'react';
 export const MessageContext = createContext();
 
 export const MessageProvider = ({ children }) => {
-  const [addedMessage, setAddedMessage] = useState(false);
-  const [updatededMessage, setUpdatededMessage] = useState(false);
+  const [displayMessage, setDisPlayMessage] = useState(false);
   const [message, setMessage] = useState('');
 
   const close = () => {
-    setAddedMessage(false);
-    setUpdatededMessage(false);
+    setDisPlayMessage(false);
   };
 
-  const displayAddMessage = () => {
-    setMessage('Player added!');
-    setAddedMessage(!addedMessage);
-  };
-
-  const displayUpdatedMessage = () => {
-    setMessage('Player updated!');
-    setUpdatededMessage(!updatededMessage);
+  const onDisplayMessage = (msg) => {
+    setMessage(msg);
+    setDisPlayMessage(!displayMessage);
+    setTimeout(() => {
+      setDisPlayMessage(false);
+    }, 2000);
   };
 
   return (
@@ -27,10 +23,8 @@ export const MessageProvider = ({ children }) => {
       value={{
         close,
         message,
-        addedMessage,
-        displayAddMessage,
-        updatededMessage,
-        displayUpdatedMessage,
+        displayMessage,
+        onDisplayMessage,
       }}
     >
       {children}
