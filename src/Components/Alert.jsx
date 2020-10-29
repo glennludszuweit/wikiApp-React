@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const Alert = () => {
   const { removePlayer } = useContext(PlayerContext);
   const {
+    close,
     addAlert,
     onAddAlert,
     deleteAlert,
@@ -18,7 +19,7 @@ const Alert = () => {
   return addAlert ? (
     <div className='alert-modal'>
       <div className='close-alert'>
-        <small onClick={() => onAddAlert()}>x</small>
+        <small onClick={() => close()}>X</small>
       </div>
       <p>{alertMessage}</p>
       <hr />
@@ -31,7 +32,7 @@ const Alert = () => {
   ) : deleteAlert ? (
     <div className='alert-modal'>
       <div className='close-alert'>
-        <small onClick={() => onDeleteAlert()}>x</small>
+        <small onClick={() => close()}>X</small>
       </div>
       <p>{alertMessage}</p>
       <hr />

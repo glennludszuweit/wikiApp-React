@@ -9,6 +9,11 @@ export const AlertProvider = ({ children }) => {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertButton, setAlertButton] = useState('');
 
+  const close = () => {
+    setAddAlert(false);
+    setDeleteAlert(false);
+  };
+
   const onAddAlert = () => {
     setAlertMessage('Player already exist. Update instead?');
     setAlertButton('Update Player');
@@ -24,6 +29,7 @@ export const AlertProvider = ({ children }) => {
   return (
     <AlertContext.Provider
       value={{
+        close,
         addAlert,
         onAddAlert,
         deleteAlert,

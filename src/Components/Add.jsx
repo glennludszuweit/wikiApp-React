@@ -5,10 +5,12 @@ import { v4 as uid } from 'uuid';
 import ReactSummernote from 'react-summernote';
 import slugify from 'react-slugify';
 import { AlertContext } from '../Context/AlertContext';
+import { MessageContext } from '../Context/MessageContext';
 
 const Add = () => {
   const { state, addPlayer } = useContext(PlayerContext);
   const { onAddAlert, setAlertLink } = useContext(AlertContext);
+  const { displayAddMessage } = useContext(MessageContext);
 
   const [description, setDescription] = useState();
   const nameUseRef = useRef(null);
@@ -36,6 +38,7 @@ const Add = () => {
       )
     ) {
       addPlayer(newPlayer);
+      displayAddMessage();
     } else {
       setAlertLink(slugify(nameUseRef.current.value));
       onAddAlert();

@@ -5,8 +5,8 @@ import { AlertContext } from '../Context/AlertContext';
 import { PlayerContext } from '../Context/PlayerContext';
 
 const View = () => {
-  const { state } = useContext(PlayerContext);
   const { onDeleteAlert, setAlertLink } = useContext(AlertContext);
+  const { state } = useContext(PlayerContext);
   const { slug } = useParams();
   const index = state.findIndex((player) => player.slug === slug);
   const player = state[index];
