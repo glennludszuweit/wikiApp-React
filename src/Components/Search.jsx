@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { UIContext } from '../Context/UIContext';
+import { SearchContext } from '../Context/SearchContext';
 
 const Search = () => {
-  const { searchValue, onSearch } = useContext(UIContext);
+  const { searchValue, onSearch } = useContext(SearchContext);
 
   return (
     <div className='search-container'>

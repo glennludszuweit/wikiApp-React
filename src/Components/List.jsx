@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { SearchContext } from '../Context/SearchContext';
 import { UIContext } from '../Context/UIContext';
 
 const List = () => {
-  const { selected, onSelectedHighLight, searchResults } = useContext(
-    UIContext
-  );
+  const { searchResults } = useContext(SearchContext);
+  const { selected, onSelectedHighLight } = useContext(UIContext);
 
   return (
     <ul className='names'>

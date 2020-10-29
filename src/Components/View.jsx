@@ -1,16 +1,19 @@
 import React, { useContext } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { Link, useParams } from 'react-router-dom';
+import { AlertContext } from '../Context/AlertContext';
 import { PlayerContext } from '../Context/PlayerContext';
 
 const View = () => {
-  const { state, removePlayer } = useContext(PlayerContext);
+  const { state } = useContext(PlayerContext);
+  const { onDeleteAlert, setAlertLink } = useContext(AlertContext);
   const { slug } = useParams();
   const index = state.findIndex((player) => player.slug === slug);
   const player = state[index];
 
   const onRemove = () => {
-    removePlayer(player.id);
+    setAlertLink(player.id);
+    onDeleteAlert();
   };
 
   return (
@@ -21,9 +24,7 @@ const View = () => {
           <Link to={`/edit/${player.slug}`}>
             <i className='fas fa-edit edit-button'></i>
           </Link>
-          <Link to='/' onClick={onRemove}>
-            <i className='fas fa-trash delete'></i>
-          </Link>
+          <i className='fas fa-trash delete' onClick={onRemove}></i>
         </div>
       </div>
 

@@ -1,14 +1,14 @@
 import React, { useRef, useState, useContext } from 'react';
 import { PlayerContext } from '../Context/PlayerContext';
-import ReactSummernote from 'react-summernote';
 import { Link } from 'react-router-dom';
-import slugify from 'react-slugify';
 import { v4 as uid } from 'uuid';
-import { UIContext } from '../Context/UIContext';
+import ReactSummernote from 'react-summernote';
+import slugify from 'react-slugify';
+import { AlertContext } from '../Context/AlertContext';
 
 const Add = () => {
   const { state, addPlayer } = useContext(PlayerContext);
-  const { onAlert, setAlertLink } = useContext(UIContext);
+  const { onAddAlert, setAlertLink } = useContext(AlertContext);
 
   const [description, setDescription] = useState();
   const nameUseRef = useRef(null);
@@ -38,7 +38,7 @@ const Add = () => {
       addPlayer(newPlayer);
     } else {
       setAlertLink(slugify(nameUseRef.current.value));
-      onAlert();
+      onAddAlert();
     }
   };
 

@@ -1,21 +1,52 @@
 import React, { useContext } from 'react';
+import { PlayerContext } from '../Context/PlayerContext';
+import { AlertContext } from '../Context/AlertContext';
 import { Link } from 'react-router-dom';
-import { UIContext } from '../Context/UIContext';
 
 const Alert = () => {
+  const { removePlayer } = useContext(PlayerContext);
   const {
-    alert,
-    onAlert,
+    addAlert,
+    onAddAlert,
+    deleteAlert,
+    onDeleteAlert,
     alertMessage,
     alertButton,
-    alertButtonLink,
-  } = useContext(UIContext);
-  return alert ? (
-    <div className='alert'>
-      <p>{alertMessage.PLAYER_EXIST}</p>
-      <Link to={alertButtonLink.PLAYER_EXIST}>
-        <button onClick={() => onAlert()}>{alertButton.PLAYER_EXIST}</button>
-      </Link>
+    alertLink,
+  } = useContext(AlertContext);
+
+  return addAlert ? (
+    <div className='alert-modal'>
+      <div className='close-alert'>
+        <small onClick={() => onAddAlert()}>x</small>
+      </div>
+      <p>{alertMessage}</p>
+      <hr />
+      <div className='alert-btn'>
+        <Link to={`/${alertLink}`}>
+          <button onClick={() => onAddAlert()}>{alertButton}</button>
+        </Link>
+      </div>
+    </div>
+  ) : deleteAlert ? (
+    <div className='alert-modal'>
+      <div className='close-alert'>
+        <small onClick={() => onDeleteAlert()}>x</small>
+      </div>
+      <p>{alertMessage}</p>
+      <hr />
+      <div className='alert-btn'>
+        <Link to='/'>
+          <button
+            onClick={() => {
+              removePlayer(alertLink);
+              onDeleteAlert();
+            }}
+          >
+            {alertButton}
+          </button>
+        </Link>
+      </div>
     </div>
   ) : null;
 };
