@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/wikiApp-React/static/css/main.bbfaffa1.chunk.css",
+    "main.js": "/wikiApp-React/static/js/main.4d2a47b8.chunk.js",
+    "main.js.map": "/wikiApp-React/static/js/main.4d2a47b8.chunk.js.map",
+    "runtime-main.js": "/wikiApp-React/static/js/runtime-main.99ef6d50.js",
+    "runtime-main.js.map": "/wikiApp-React/static/js/runtime-main.99ef6d50.js.map",
+    "static/css/2.e8f1b9b5.chunk.css": "/wikiApp-React/static/css/2.e8f1b9b5.chunk.css",
+    "static/js/2.2c9b2892.chunk.js": "/wikiApp-React/static/js/2.2c9b2892.chunk.js",
+    "static/js/2.2c9b2892.chunk.js.map": "/wikiApp-React/static/js/2.2c9b2892.chunk.js.map",
+    "index.html": "/wikiApp-React/index.html",
+    "precache-manifest.975ce89563260a5bc3345349da2ee6bf.js": "/wikiApp-React/precache-manifest.975ce89563260a5bc3345349da2ee6bf.js",
+    "service-worker.js": "/wikiApp-React/service-worker.js",
+    "static/css/2.e8f1b9b5.chunk.css.map": "/wikiApp-React/static/css/2.e8f1b9b5.chunk.css.map",
+    "static/css/main.bbfaffa1.chunk.css.map": "/wikiApp-React/static/css/main.bbfaffa1.chunk.css.map",
+    "static/js/2.2c9b2892.chunk.js.LICENSE.txt": "/wikiApp-React/static/js/2.2c9b2892.chunk.js.LICENSE.txt",
+    "static/media/ball.png": "/wikiApp-React/static/media/ball.63bb13ca.png",
+    "static/media/home.jpg": "/wikiApp-React/static/media/home.e09f37c5.jpg",
+    "static/media/logo.png": "/wikiApp-React/static/media/logo.dfd7f090.png",
+    "static/media/react-summernote.css": "/wikiApp-React/static/media/summernote.f694db69.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99ef6d50.js",
+    "static/css/2.e8f1b9b5.chunk.css",
+    "static/js/2.2c9b2892.chunk.js",
+    "static/css/main.bbfaffa1.chunk.css",
+    "static/js/main.4d2a47b8.chunk.js"
+  ]
+}
