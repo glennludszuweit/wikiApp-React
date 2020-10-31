@@ -1,33 +1,27 @@
-import React, { useRef, useState, useContext } from 'react';
-import ReactSummernote from 'react-summernote';
-import { Link, useParams } from 'react-router-dom';
-import slugify from 'react-slugify';
+import React, { useRef, useContext } from 'react';
 import { PlayerContext } from '../Context/PlayerContext';
 import { MessageContext } from '../Context/MessageContext';
+import { EditorContext } from '../Context/EditorContext';
+import { Link, useParams } from 'react-router-dom';
+import ReactSummernote from 'react-summernote';
+import slugify from 'react-slugify';
 
 const Edit = () => {
   const { onDisplayMessage } = useContext(MessageContext);
-  const { state, editPlayer } = useContext(PlayerContext);
-  const { slug } = useParams();
-  const index = state.findIndex((player) => player.slug === slug);
-  const player = state[index];
-  const [description, setDescription] = useState(player.description);
+  const { currentPlayer, editPlayer } = useContext(PlayerContext);
+  const { addImage, editorValue, setEditorValue } = useContext(EditorContext);
+
+  const player = currentPlayer(useParams());
   const nameUseRef = useRef(null);
 
-  const addImage = ([file]) => {
-    const reader = new FileReader();
-    reader.onloadend = () => ReactSummernote.insertImage(reader.result);
-    reader.readAsDataURL(file);
-  };
-
-  const onDescriptionChange = (data) => {
-    setDescription(data);
+  const editorChange = (data) => {
+    setEditorValue(data);
   };
 
   const onEditPlayerHandler = () => {
     player.name = nameUseRef.current.value;
     player.slug = slugify(player.name);
-    player.description = description;
+    player.description = editorValue;
     editPlayer(player);
     onDisplayMessage('Player updated!');
   };
@@ -46,7 +40,7 @@ const Edit = () => {
         <ReactSummernote
           onInit={() => {
             const editArea = document.querySelector('.note-editable');
-            editArea.innerHTML = Object.values({ description });
+            editArea.innerHTML = player.description;
           }}
           options={{
             height: 350,
@@ -61,8 +55,8 @@ const Edit = () => {
               ['view', ['fullscreen', 'codeview']],
             ],
           }}
-          onChange={onDescriptionChange}
-          onImageUpload={addImage}
+          onChange={editorChange}
+          onImageUpload={() => addImage()}
         />
         <div className='buttons'>
           <Link to={`/${player.slug}`}>

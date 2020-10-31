@@ -11,25 +11,28 @@ import { SearchProvider } from './Context/SearchContext';
 import { MessageProvider } from './Context/MessageContext';
 
 import './App.scss';
+import { EditorProvider } from './Context/EditorContext';
 
 const App = () => {
   return (
     <PlayerProvider>
-      <MessageProvider>
-        <AlertProvider>
-          <SearchProvider>
-            <UIProvider>
-              <Message />
-              <Alert />
-              <Header />
-              <div className='main'>
-                <Aside />
-                <Content />
-              </div>
-            </UIProvider>
-          </SearchProvider>
-        </AlertProvider>
-      </MessageProvider>
+      <EditorProvider>
+        <MessageProvider>
+          <AlertProvider>
+            <SearchProvider>
+              <UIProvider>
+                <Message />
+                <Alert />
+                <Header />
+                <div className='main'>
+                  <Aside />
+                  <Content />
+                </div>
+              </UIProvider>
+            </SearchProvider>
+          </AlertProvider>
+        </MessageProvider>
+      </EditorProvider>
     </PlayerProvider>
   );
 };

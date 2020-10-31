@@ -1,28 +1,23 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useContext } from 'react';
 import { PlayerContext } from '../Context/PlayerContext';
+import { AlertContext } from '../Context/AlertContext';
+import { MessageContext } from '../Context/MessageContext';
+import { EditorContext } from '../Context/EditorContext';
 import { Link } from 'react-router-dom';
 import { v4 as uid } from 'uuid';
 import ReactSummernote from 'react-summernote';
 import slugify from 'react-slugify';
-import { AlertContext } from '../Context/AlertContext';
-import { MessageContext } from '../Context/MessageContext';
 
 const Add = () => {
   const { state, addPlayer } = useContext(PlayerContext);
+  const { editorValue, addImage, setEditorValue } = useContext(EditorContext);
   const { onAddAlert, setAlertLink } = useContext(AlertContext);
   const { onDisplayMessage } = useContext(MessageContext);
 
-  const [description, setDescription] = useState();
   const nameUseRef = useRef(null);
 
-  const addImage = ([file]) => {
-    const reader = new FileReader();
-    reader.onloadend = () => ReactSummernote.insertImage(reader.result);
-    reader.readAsDataURL(file);
-  };
-
-  const onDescriptionChange = (data) => {
-    setDescription(data);
+  const editorChange = (data) => {
+    setEditorValue(data);
   };
 
   const onAddPlayerHandler = () => {
@@ -30,7 +25,7 @@ const Add = () => {
     newPlayer.id = uid();
     newPlayer.name = nameUseRef.current.value;
     newPlayer.slug = slugify(newPlayer.name);
-    newPlayer.description = description;
+    newPlayer.description = editorValue;
 
     if (
       state.every(
@@ -58,7 +53,7 @@ const Add = () => {
         />
 
         <ReactSummernote
-          value={description}
+          value={editorValue}
           options={{
             height: 350,
             dialogsInBody: true,
@@ -72,8 +67,8 @@ const Add = () => {
               ['view', ['fullscreen', 'codeview']],
             ],
           }}
-          onChange={onDescriptionChange}
-          onImageUpload={addImage}
+          onChange={editorChange}
+          onImageUpload={() => addImage()}
         />
 
         <div className='buttons'>

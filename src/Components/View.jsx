@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
-import ReactHtmlParser from 'react-html-parser';
-import { Link, useParams } from 'react-router-dom';
 import { AlertContext } from '../Context/AlertContext';
 import { PlayerContext } from '../Context/PlayerContext';
+import { Link, useParams } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 
 const View = () => {
   const { onDeleteAlert, setAlertLink } = useContext(AlertContext);
-  const { state } = useContext(PlayerContext);
-  const { slug } = useParams();
-  const index = state.findIndex((player) => player.slug === slug);
-  const player = state[index];
+  const { currentPlayer } = useContext(PlayerContext);
+
+  const player = currentPlayer(useParams());
 
   const onRemove = () => {
     setAlertLink(player.id);

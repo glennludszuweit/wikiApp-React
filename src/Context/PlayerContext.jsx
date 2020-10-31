@@ -1,68 +1,46 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
-//initial state
 const initialState = JSON.parse(localStorage.getItem('players'))
   ? JSON.parse(localStorage.getItem('players'))
   : [];
 
-//reducer
-const PlayerReducer = (state, action) => {
-  switch (action.type) {
-    case 'ADD_PLAYER':
-      return [action.payload, ...state];
-
-    case 'EDIT_PLAYER':
-      return state.map((player) =>
-        player.id === action.payload.id ? action.payload : player
-      );
-
-    case 'REMOVE_PLAYER':
-      return state.filter((player) => player.id !== action.payload);
-
-    default:
-      return state;
-  }
-};
-
-//context
 export const PlayerContext = createContext(initialState);
 
-//provider
 export const PlayerProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(PlayerReducer, initialState);
+  const [state, setState] = useState(initialState);
 
   useEffect(() => {
     return localStorage.setItem('players', JSON.stringify(state));
   }, [state]);
 
-  //add player
+  const currentPlayer = (params) => {
+    const { slug } = params;
+    const index = state.findIndex((player) => player.slug === slug);
+    const player = state[index];
+    return player;
+  };
+
   const addPlayer = (player) => {
-    dispatch({
-      type: 'ADD_PLAYER',
-      payload: player,
-    });
+    setState([player, ...state]);
   };
 
-  //edit player
-  const editPlayer = (player) => {
-    dispatch({
-      type: 'EDIT_PLAYER',
-      payload: player,
-    });
+  const editPlayer = (currentPlayer) => {
+    const update = state.map((player) =>
+      player.id === currentPlayer.id ? currentPlayer : player
+    );
+    setState([...update]);
   };
 
-  //delete player
   const removePlayer = (id) => {
-    dispatch({
-      type: 'REMOVE_PLAYER',
-      payload: id,
-    });
+    const remove = state.filter((player) => player.id !== id);
+    setState([...remove]);
   };
 
   return (
     <PlayerContext.Provider
       value={{
         state,
+        currentPlayer,
         addPlayer,
         editPlayer,
         removePlayer,

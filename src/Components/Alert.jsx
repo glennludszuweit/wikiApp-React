@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Alert = () => {
   const { removePlayer } = useContext(PlayerContext);
+
   const {
     close,
     addAlert,
