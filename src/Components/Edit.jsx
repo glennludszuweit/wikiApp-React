@@ -9,14 +9,10 @@ import slugify from 'react-slugify';
 const Edit = () => {
   const { onDisplayMessage } = useContext(MessageContext);
   const { currentPlayer, editPlayer } = useContext(PlayerContext);
-  const { addImage, editorValue, setEditorValue } = useContext(EditorContext);
+  const { addImage, editorValue, editorChange } = useContext(EditorContext);
 
   const player = currentPlayer(useParams());
   const nameUseRef = useRef(null);
-
-  const editorChange = (data) => {
-    setEditorValue(data);
-  };
 
   const onEditPlayerHandler = () => {
     player.name = nameUseRef.current.value;

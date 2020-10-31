@@ -13,8 +13,14 @@ export const EditorProvider = ({ children }) => {
     reader.readAsDataURL(file);
   };
 
+  const editorChange = (data) => {
+    setEditorValue(data);
+  };
+
   return (
-    <EditorContext.Provider value={{ editorValue, setEditorValue, addImage }}>
+    <EditorContext.Provider
+      value={{ editorValue, setEditorValue, addImage, editorChange }}
+    >
       {children}
     </EditorContext.Provider>
   );

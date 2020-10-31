@@ -9,16 +9,12 @@ import ReactSummernote from 'react-summernote';
 import slugify from 'react-slugify';
 
 const Add = () => {
-  const { state, addPlayer } = useContext(PlayerContext);
-  const { editorValue, addImage, setEditorValue } = useContext(EditorContext);
+  const { players, addPlayer } = useContext(PlayerContext);
+  const { editorValue, addImage, editorChange } = useContext(EditorContext);
   const { onAddAlert, setAlertLink } = useContext(AlertContext);
   const { onDisplayMessage } = useContext(MessageContext);
 
   const nameUseRef = useRef(null);
-
-  const editorChange = (data) => {
-    setEditorValue(data);
-  };
 
   const onAddPlayerHandler = () => {
     const newPlayer = {};
@@ -28,7 +24,7 @@ const Add = () => {
     newPlayer.description = editorValue;
 
     if (
-      state.every(
+      players.every(
         (player) => player.name.toLowerCase() !== newPlayer.name.toLowerCase()
       )
     ) {

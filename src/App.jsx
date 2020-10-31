@@ -9,9 +9,9 @@ import { UIProvider } from './Context/UIContext';
 import { AlertProvider } from './Context/AlertContext';
 import { SearchProvider } from './Context/SearchContext';
 import { MessageProvider } from './Context/MessageContext';
+import { EditorProvider } from './Context/EditorContext';
 
 import './App.scss';
-import { EditorProvider } from './Context/EditorContext';
 
 const App = () => {
   return (

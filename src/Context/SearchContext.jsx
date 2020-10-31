@@ -4,20 +4,20 @@ import { PlayerContext } from './PlayerContext';
 export const SearchContext = createContext();
 
 export const SearchProvider = ({ children }) => {
-  const { state } = useContext(PlayerContext);
+  const { players } = useContext(PlayerContext);
 
   //search
   const [searchValue, setSearchValue] = useState('');
-  const [searchResults, setSearchResults] = useState(state);
+  const [searchResults, setSearchResults] = useState(players);
   const onSearch = (e) => {
     setSearchValue(e.target.value);
   };
   useEffect(() => {
-    const results = state.filter((player) =>
+    const results = players.filter((player) =>
       player.name.toLowerCase().includes(searchValue.toLowerCase())
     );
     setSearchResults(results);
-  }, [state, searchValue]);
+  }, [players, searchValue]);
 
   return (
     <SearchContext.Provider

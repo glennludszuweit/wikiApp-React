@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { SearchContext } from '../Context/SearchContext';
 import { UIContext } from '../Context/UIContext';
+import { Link } from 'react-router-dom';
 
 const List = () => {
   const { searchResults } = useContext(SearchContext);

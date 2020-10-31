@@ -7,39 +7,39 @@ const initialState = JSON.parse(localStorage.getItem('players'))
 export const PlayerContext = createContext(initialState);
 
 export const PlayerProvider = ({ children }) => {
-  const [state, setState] = useState(initialState);
+  const [players, setPlayers] = useState(initialState);
 
   useEffect(() => {
-    return localStorage.setItem('players', JSON.stringify(state));
-  }, [state]);
+    return localStorage.setItem('players', JSON.stringify(players));
+  }, [players]);
 
   const currentPlayer = (params) => {
     const { slug } = params;
-    const index = state.findIndex((player) => player.slug === slug);
-    const player = state[index];
+    const index = players.findIndex((player) => player.slug === slug);
+    const player = players[index];
     return player;
   };
 
   const addPlayer = (player) => {
-    setState([player, ...state]);
+    setPlayers([player, ...players]);
   };
 
   const editPlayer = (currentPlayer) => {
-    const update = state.map((player) =>
+    const update = players.map((player) =>
       player.id === currentPlayer.id ? currentPlayer : player
     );
-    setState([...update]);
+    setPlayers([...update]);
   };
 
   const removePlayer = (id) => {
-    const remove = state.filter((player) => player.id !== id);
-    setState([...remove]);
+    const remove = players.filter((player) => player.id !== id);
+    setPlayers([...remove]);
   };
 
   return (
     <PlayerContext.Provider
       value={{
-        state,
+        players,
         currentPlayer,
         addPlayer,
         editPlayer,
