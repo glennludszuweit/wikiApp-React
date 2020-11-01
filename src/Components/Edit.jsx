@@ -1,17 +1,55 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import ReactSummernote from 'react-summernote';
+import slugify from 'react-slugify';
+import { useDispatch, useSelector } from 'react-redux';
+import { playersReducer } from '../Reducers/playersReducer';
 
 const Edit = () => {
+  const players = useSelector((state) => state.players);
+  const dispatchPlayer = useDispatch(playersReducer);
+  const [editorValue, setEditorValue] = useState();
+  const nameUseRef = useRef(null);
+
+  const { slug } = useParams();
+  const index = players.findIndex((player) => player.slug === slug);
+  const player = players[index];
+
+  const addImage = ([file]) => {
+    const reader = new FileReader();
+    reader.onloadend = () => ReactSummernote.insertImage(reader.result);
+    reader.readAsDataURL(file);
+  };
+
+  const editorChange = (data) => {
+    setEditorValue(data);
+  };
+
+  const onEditPlayerHandler = () => {
+    player.name = nameUseRef.current.value;
+    player.slug = slugify(player.name);
+    player.description = editorValue;
+    dispatchPlayer({
+      type: 'EDIT_PLAYER',
+      payload: player,
+    });
+  };
+
   return (
     <div>
       <h1>Edit Player</h1>
       <form>
-        <input id='name' type='text' placeholder='players name' />
+        <input
+          id='name'
+          type='text'
+          placeholder='players name'
+          defaultValue={player.name}
+          ref={nameUseRef}
+        />
         <ReactSummernote
           onInit={() => {
             const editArea = document.querySelector('.note-editable');
-            editArea.innerHTML = 'hello';
+            editArea.innerHTML = player.description;
           }}
           options={{
             height: 350,
@@ -26,12 +64,14 @@ const Edit = () => {
               ['view', ['fullscreen', 'codeview']],
             ],
           }}
+          onChange={editorChange}
+          onImageUpload={() => addImage()}
         />
         <div className='buttons'>
-          <Link to='/'>
+          <Link to={`/${player.slug}`}>
             <button>Cancel</button>
           </Link>
-          <Link to='/'>
+          <Link to={`/${player.slug}`} onClick={onEditPlayerHandler}>
             <button>Update</button>
           </Link>
         </div>
