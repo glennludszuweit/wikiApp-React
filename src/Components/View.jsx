@@ -3,16 +3,22 @@ import { AlertContext } from '../Context/AlertContext';
 import { PlayerContext } from '../Context/PlayerContext';
 import { Link, useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
+import { useDispatch, useSelector } from 'react-redux';
+import { playersReducer } from '../Reducers/playersReducer';
 
 const View = () => {
-  const { onDeleteAlert, setAlertLink } = useContext(AlertContext);
-  const { currentPlayer } = useContext(PlayerContext);
+  const players = useSelector((state) => state.players);
+  const dispatchPlayer = useDispatch(playersReducer);
 
-  const player = currentPlayer(useParams());
+  const { slug } = useParams();
+  const index = players.findIndex((player) => player.slug === slug);
+  const player = players[index];
 
   const onRemove = () => {
-    setAlertLink(player.id);
-    onDeleteAlert();
+    dispatchPlayer({
+      type: 'REMOVE_PLAYER',
+      payload: player,
+    });
   };
 
   return (
@@ -23,7 +29,9 @@ const View = () => {
           <Link to={`/edit/${player.slug}`}>
             <i className='fas fa-edit edit-button'></i>
           </Link>
-          <i className='fas fa-trash delete' onClick={onRemove}></i>
+          <Link to='/'>
+            <i className='fas fa-trash delete' onClick={onRemove}></i>
+          </Link>
         </div>
       </div>
 

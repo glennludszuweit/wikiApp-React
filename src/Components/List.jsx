@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 const List = () => {
   const players = useSelector((state) => state.players);
-  console.log(players);
+
   return (
     <ul>
       {players.map((player) => {
         return (
-          <Link to={`/${player.slug}`}>
+          <Link to={`/${player.slug}`} key={player.id}>
             <li>{player.name}</li>
           </Link>
         );
