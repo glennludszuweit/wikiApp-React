@@ -4,36 +4,20 @@ import Aside from './Containers/Aside';
 import Content from './Containers/Content';
 import Alert from './Components/Alert';
 import Message from './Components/Message';
-import { PlayerProvider } from './Context/PlayerContext';
-import { UIProvider } from './Context/UIContext';
-import { AlertProvider } from './Context/AlertContext';
-import { SearchProvider } from './Context/SearchContext';
-import { MessageProvider } from './Context/MessageContext';
-import { EditorProvider } from './Context/EditorContext';
 
 import './App.scss';
 
 const App = () => {
   return (
-    <PlayerProvider>
-      <EditorProvider>
-        <MessageProvider>
-          <AlertProvider>
-            <SearchProvider>
-              <UIProvider>
-                <Message />
-                <Alert />
-                <Header />
-                <div className='main'>
-                  <Aside />
-                  <Content />
-                </div>
-              </UIProvider>
-            </SearchProvider>
-          </AlertProvider>
-        </MessageProvider>
-      </EditorProvider>
-    </PlayerProvider>
+    <React.Fragment>
+      <Message />
+      <Alert />
+      <Header />
+      <div className='main'>
+        <Aside />
+        <Content />
+      </div>
+    </React.Fragment>
   );
 };
 
