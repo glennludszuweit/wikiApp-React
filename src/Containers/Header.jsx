@@ -1,21 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { UIContext } from '../Context/UIContext';
 import toggle from '../Images/ball.png';
 import logo from '../Images/logo.png';
 
 const Header = () => {
-  const { onToggleAside } = useContext(UIContext);
-
   return (
     <div>
       <div className='header'>
-        <img
-          className='toggle'
-          src={toggle}
-          alt='menu'
-          onClick={onToggleAside}
-        />
+        <img className='toggle' src={toggle} alt='menu' />
         <Link to='/'>
           <img src={logo} alt='logo' />
         </Link>

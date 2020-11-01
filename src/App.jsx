@@ -10,8 +10,6 @@ import './App.scss';
 const App = () => {
   return (
     <React.Fragment>
-      <Message />
-      <Alert />
       <Header />
       <div className='main'>
         <Aside />
